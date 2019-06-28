@@ -9,14 +9,10 @@ import { BrowserRouter } from 'react-router-dom'
 import './index.css';
 import App from './App';
 import manageVessels from './reducers/manageVessels.js'
-//import store from './store.js'
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(manageVessels, composeEnhancer(applyMiddleware(thunk)))
-
-//const store = createStore(manageVessels,
-//  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 
 ReactDOM.render(<Provider store={ store }><BrowserRouter><App /></BrowserRouter></Provider>, document.getElementById('root'));
 
