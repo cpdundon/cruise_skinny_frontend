@@ -33,14 +33,13 @@ export const getVessels = () => {
         } else {
           console.log(response)
           dispatch(setVessels(response))
-//					dispatch(createOrUpdateVessel({name: "Orca", operator: "Clint Eastwood", splash_date: "1995-07-04"}, ""))
         }
       })
       .catch(console.log)
   }
 }
 
-export const createOrUpdateVessel = (vessel, history) => {
+export const createOrUpdateVessel = (vessel, history = null) => {
   let method
 	let path = "http://localhost:3001/vessels" 
 
@@ -66,8 +65,7 @@ export const createOrUpdateVessel = (vessel, history) => {
           alert(response.error)
         } else {
           dispatch(addVessel(response))
-//          dispatch(resetLoginForm())
-//          history.push('/')
+          if (!!history) {history.push('/')}
         }
       })
       .catch(console.log)

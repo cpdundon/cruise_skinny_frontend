@@ -1,7 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { Route, Switch, withRouter } from 'react-router-dom'
+
 import { getVessels } from './actions/vessels'
+import VesselsContainer from './containers/VesselsContainer'
+import About from './components/About'
+import VesselContainer from './containers/VesselContainer'
+import NavBar from './components/NavBar'
 import './App.css';
 
 class App extends React.Component {
@@ -13,10 +18,13 @@ class App extends React.Component {
   render(){
     return (
       <div className="App">
-        { /* <Route exact path='/' component={Home}/>
-				<Route exact path='/vessels/:vessel_id/update' component={ < CreateOrUpdateVessel /> } />
-        <Route exact path='/vessels/:vessel_id/show' component={VesselCard}/>
-				*/ }
+				<NavBar />
+
+				<Switch>
+					<Route exact path='/' render={ props => <VesselsContainer { ...props }/>} />
+					<Route path='/vessels/:vesselId' render={ props => <VesselContainer { ...props }/> } />
+					<Route exact path='/about' component={About}/>
+				</Switch>
       </div>
     );
 
