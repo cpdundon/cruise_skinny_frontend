@@ -1,7 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import SkinnyInput from '../components/skinnies/SkinnyInput'
+import Skinnies from '../components/skinnies/Skinnies'
 
-const ThoughtsContainer = ({ vesselId, history, vessels }) => {
+const ThoughtsContainer = ({ vesselId, vessels }) => {
 
 		const thisVessel = vessels.find(v => (v.vessel_id === vesselId))
 
@@ -10,8 +12,8 @@ const ThoughtsContainer = ({ vesselId, history, vessels }) => {
     return (
       <div>
 				<h1>Vessel Name: {thisVessel.name}</h1>
-				<h2>New Thought Input Goes Here</h2><br/>
-				<h2>Existing Thoughts Go Here</h2>
+				<SkinnyInput vesselId={vesselId} /><br/>
+				<Skinnies vesselId={vesselId} /><br/>
       </div>
     )
 }

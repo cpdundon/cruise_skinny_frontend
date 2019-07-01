@@ -9,7 +9,7 @@ const VesselContainer = ({ match, history }) => {
 	return (
 		<div>
 			<VesselCard vesselId={vesselId} history={history} /><br/>
-			<ThoughtsContainer vesselId={vesselId} history={history} />
+			<ThoughtsContainer vesselId={vesselId} />
 		</div>
 	)
 }
