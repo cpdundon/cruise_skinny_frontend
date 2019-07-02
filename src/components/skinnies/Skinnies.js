@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { NavLink } from 'react-router-dom'
 
 class Skinnies extends Component {
 	
@@ -12,7 +11,7 @@ class Skinnies extends Component {
 		if (!thisVessel) { return null }
 
     return thisVessel.skinny.map( s => {
-//				if (!s.active) {return null}
+				if (!s.active) {return null}
 
 				return <li key={s.skinny_id}>{s.thought}</li>
 			}
@@ -22,7 +21,7 @@ class Skinnies extends Component {
   render() {
     return(
       <ul>
-        <h2>Skinny Thoughts</h2>
+        <h2>Skinnies</h2>
 				{this.renderSkinnies()}
       </ul>
     );

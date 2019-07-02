@@ -11,7 +11,6 @@ const ThoughtsContainer = ({ vesselId, vessels }) => {
 
     return (
       <div>
-				<h1>Vessel Name: {thisVessel.name}</h1>
 				<SkinnyInput vesselId={vesselId} /><br/>
 				<Skinnies vesselId={vesselId} /><br/>
       </div>

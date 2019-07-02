@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 class Vessels extends Component {
 	
@@ -16,17 +16,19 @@ class Vessels extends Component {
     return vessels.map( v => {
 				if (!v.active) {return null}
 
-				return (<><NavLink exact activeClassName="active" key={v.vessel_id} to={`/vessels/${v.vessel_id}`}>{`${v.name} -- Operator: ${v.operator}`}</NavLink><br/></>)
+				return (<><li key={v.id.toString()}><Link to={`/vessels/${v.vessel_id}`}>{`${v.name} -- Operator: ${v.operator}`}</Link></li></>)
 			}
 		)
 	}
 
   render() {
     return(
-      <ul>
-        <h2>Vessels List </h2>
-				{this.renderVessels()}
-      </ul>
+			<div id="vessels">
+				<h2>Vessels List</h2>
+				<ul>
+					{this.renderVessels()}
+				</ul>
+			</div>
     );
   }
 };

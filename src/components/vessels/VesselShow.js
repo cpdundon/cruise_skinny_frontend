@@ -18,7 +18,7 @@ const VesselShow = (props) => {
 	return (
 
 		<div>
-			<h1>Name: {thisVessel.name}</h1>
+			<h1>Vessel Name: {thisVessel.name}</h1>
 			<h2>Operator: {thisVessel.operator}</h2>
 			{(!!thisVessel.splash_date) ? <h2>Splash Date: {thisVessel.splash_date}</h2> : null}
 			<br/>
