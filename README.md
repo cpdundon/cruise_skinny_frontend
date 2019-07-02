@@ -10,8 +10,7 @@ Please fork this project and clone it down to your machine.
 
 You will need to install as below from the project root directory:
 
-sudo install npm
-sudo npm install cuid react-router-dom redux redux-thunk react-redux --save
+sudo install npm && npm install cuid react-router-dom redux redux-thunk react-redux --save
 
 Then run from root:
 
