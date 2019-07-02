@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-class Vessels extends Component {
+const Vessels = (props) => {
 	
-	renderVessels = () => {
+	const renderVessels = () => {
 
-		let { vessels } = this.props
+		let { vessels } = props
 
 		if (!vessels) { return null }
 
@@ -16,21 +16,19 @@ class Vessels extends Component {
     return vessels.map( v => {
 				if (!v.active) {return null}
 
-				return (<><li key={v.id.toString()}><Link to={`/vessels/${v.vessel_id}`}>{`${v.name} -- Operator: ${v.operator}`}</Link></li></>)
+				return (<li key={v.id.toString()}><Link to={`/vessels/${v.vessel_id}`}>{`${v.name} -- Operator: ${v.operator}`}</Link></li>)
 			}
 		)
 	}
 
-  render() {
-    return(
-			<div id="vessels">
-				<h2>Vessels List</h2>
-				<ul>
-					{this.renderVessels()}
-				</ul>
-			</div>
-    );
-  }
+	return(
+		<div id="vessels">
+			<h2>Vessels List</h2>
+			<ul>
+				{renderVessels()}
+			</ul>
+		</div>
+	)
 };
 
 export default connect(state => ({ vessels: state.vessels }))(Vessels);

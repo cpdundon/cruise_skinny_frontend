@@ -1,3 +1,24 @@
+## Cruise Skinny Specific Information
+
+This repo is paired with https://github.com/cpdundon/cruise_skinny_backend
+
+### What you need to do to run this repo
+
+Set up the backend - see above.
+
+Please fork this project and clone it down to your machine.  
+
+You will need to install as below from the project root directory:
+
+sudo install npm
+sudo npm install cuid react-router-dom redux redux-thunk react-redux --save
+
+Then run from root:
+
+npm start
+
+## Information from Facebook
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

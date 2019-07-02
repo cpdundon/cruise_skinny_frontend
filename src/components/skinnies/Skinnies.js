@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux'
 
-class Skinnies extends Component {
+const Skinnies = (props) => {
 	
-	renderSkinnies = () => {
+	const renderSkinnies = () => {
 
-		const { vesselId } = this.props
-		const thisVessel = this.props.vessels.find(v => (v.vessel_id === vesselId))
+		const { vesselId } = props
+		const thisVessel = props.vessels.find(v => (v.vessel_id === vesselId))
 
 		if (!thisVessel) { return null }
 
@@ -18,14 +18,12 @@ class Skinnies extends Component {
 		)
 	}
 
-  render() {
-    return(
-      <ul>
-        <h2>Skinnies</h2>
-				{this.renderSkinnies()}
-      </ul>
-    );
-  }
+	return(
+		<ul>
+			<h2>Skinnies</h2>
+			{renderSkinnies()}
+		</ul>
+	)
 };
 
 export default connect(state => ({ vessels: state.vessels }))(Skinnies);
