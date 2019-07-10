@@ -42,6 +42,7 @@ export const getVessels = () => {
 export const createOrUpdateVessel = (vessel, history = null) => {
   let method
 	let path = "http://localhost:3001/vessels" 
+	console.log("c")
 
 	if (!!vessel.id) {
 		method = "PATCH"
@@ -64,10 +65,12 @@ export const createOrUpdateVessel = (vessel, history = null) => {
         if (response.error) {
           alert(response.error)
         } else {
+					console.log("d")
           dispatch(addVessel(response))
           if (!!history) {history.push('/')}
         }
       })
       .catch(console.log)
+			console.log("e")
   }
 }

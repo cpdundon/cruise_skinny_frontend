@@ -16,8 +16,10 @@ class VesselInput extends Component {
 
   handleOnSubmit(event) {
     event.preventDefault()
+		console.log("a")
     this.props.createOrUpdateVessel({ ...this.state })
-    this.setState(initState)
+    console.log("b")
+		this.setState(initState)
   }
 
   render() {

@@ -3,22 +3,25 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 const Vessels = (props) => {
-	
+	const clickUpVote = (e) => {
+		alert(e.target.id)
+		return null
+	}
+
 	const renderVessels = () => {
 
-		let { vessels } = props
+		const { vessels } = props
 
 		if (!vessels) { return null }
-
+		
 		//Sort the vessles in alpha order by name
-		vessels = vessels.sort((a, b) => a.name.toUpperCase() !== b.name.toUpperCase() ? a.name.toUpperCase() < b.name.toUpperCase() ? -1 : 1 : 0)
+		const vesselsCopy = vessels.sort((a, b) => a.name.toUpperCase() !== b.name.toUpperCase() ? a.name.toUpperCase() < b.name.toUpperCase() ? -1 : 1 : 0)
 
     return vessels.map( v => {
 				if (!v.active) {return null}
 
-				return (<li key={v.id.toString()}><Link to={`/vessels/${v.vessel_id}`}>{`${v.name} -- Operator: ${v.operator}`}</Link></li>)
-			}
-		)
+				return (<VesselLI vessel={v} />)
+		})
 	}
 
 	return(
@@ -32,3 +35,23 @@ const Vessels = (props) => {
 };
 
 export default connect(state => ({ vessels: state.vessels }))(Vessels);
+
+const VesselLI = (props) => {
+	const { vessel } = props
+
+	const clickUpVote = () => {
+		return null
+	}
+
+	return(
+		<li key ={vessel.id.toString()}>
+			<Link to={`/vessels/${vessel.vessel_id}`}>
+				{`${vessel.name} -- Operator: ${vessel.operator}`}
+			</Link>
+			<div> </div>
+			<button onClick={clickUpVote}>Up-Vote</button>
+			<div>{'COUNTER'}</div>
+		</li>
+	)
+
+}; 
