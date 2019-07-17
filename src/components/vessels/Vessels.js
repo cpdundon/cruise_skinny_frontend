@@ -1,57 +1,50 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+import VesselLI from './VesselLI'
 
-const Vessels = (props) => {
-	const clickUpVote = (e) => {
-		alert(e.target.id)
-		return null
+class Vessels extends Component {
+	constructor(props) {
+		super(props)
+		this.state = { vesselList: [] }
 	}
 
-	const renderVessels = () => {
+	createVesselList(forward=1) {
 
-		const { vessels } = props
+		const { vessels } = this.props
 
 		if (!vessels) { return null }
-		
-		//Sort the vessles in alpha order by name
-		const vesselsCopy = vessels.sort((a, b) => a.name.toUpperCase() !== b.name.toUpperCase() ? a.name.toUpperCase() < b.name.toUpperCase() ? -1 : 1 : 0)
+	
+		let vesselsCopy = vessels.slice()
+	
+		//Sort the vessles by name
+		vesselsCopy.sort((a, b) => a.name.toUpperCase() !== b.name.toUpperCase() ? a.name.toUpperCase() < b.name.toUpperCase() ? forward * -1 : forward * 1 : 0)
 
-    return vessels.map( v => {
+    const vesselList =  vesselsCopy.map( v => {
 				if (!v.active) {return null}
 
 				return (<VesselLI vessel={v} />)
 		})
+
+		return vesselList
 	}
 
-	return(
-		<div id="vessels">
-			<h2>Vessels List</h2>
-			<ul>
-				{renderVessels()}
-			</ul>
-		</div>
-	)
+	setVesselsInState(forward=1) {
+		const vesselList = this.createVesselList(forward)
+		this.setState( { vesselList } )
+	}
+
+	render(){
+		return(
+			<div id="vessels">
+				<h2>Vessels List</h2>
+				<button onClick={() => this.setVesselsInState(-1)}>Reverse List</button>
+				<ul>
+					{(this.state.vesselList.length === 0) ? this.createVesselList() : this.state.vesselList }
+				</ul>
+			</div>
+		)
+	}
 };
 
 export default connect(state => ({ vessels: state.vessels }))(Vessels);
 
-const VesselLI = (props) => {
-	const { vessel } = props
-
-	const clickUpVote = () => {
-		return null
-	}
-
-	return(
-		<li key ={vessel.id.toString()}>
-			<Link to={`/vessels/${vessel.vessel_id}`}>
-				{`${vessel.name} -- Operator: ${vessel.operator}`}
-			</Link>
-			<div> </div>
-			<button onClick={clickUpVote}>Up-Vote</button>
-			<div>{'COUNTER'}</div>
-		</li>
-	)
-
-}; 
